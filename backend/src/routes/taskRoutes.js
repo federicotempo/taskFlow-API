@@ -1,10 +1,10 @@
 const { Router } = require("express");
-const { getTasks } = require("../controllers/taskController");
+const { getTasks, createTask } = require("../controllers/taskController");
 
 const taskRouter = Router();
 
 taskRouter.get("/", getTasks);
-taskRouter.post("/");
+taskRouter.post("/", createTask);
 taskRouter.put("/:id");
 taskRouter.delete("/:id");
 
