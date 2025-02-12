@@ -16,9 +16,9 @@ const getTasks = async (req, res) => {
 
 const createTask = async (req, res) => {
   try {
-    const { title, description, dueDate, visibility } = req.body;
+    const { title, description, dueDate, status, visibility } = req.body;
     const task = await prisma.task.create({
-      data: { title, description, dueDate, visibility },
+      data: { title, description, dueDate, status, visibility },
     });
     return res.status(201).json({ message: "Task created" });
   } catch (error) {

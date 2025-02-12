@@ -2,14 +2,18 @@ const { body, validationResult } = require("express-validator");
 
 const validateTask = [
   body("title").trim().notEmpty().withMessage("Title is required"),
-  body("description")
-    .trim()
-    .optional(),
+  body("description").trim().optional(),
   body("dueDate")
     .optional()
     .isISO8601()
     .toDate()
     .withMessage("Due Date must be a valid ISO-8601 date"),
+  body("status")
+    .optional()
+    .isIn(["PENDING", "IN_PROGRESS", "COMPLETED"])
+    .withMessage(
+      'Status must be one of: "PENDING", "IN_PROGRESS", "COMPLETED"'
+    ),
   body("visibility")
     .optional()
     .isIn(["PUBLIC", "PRIVATE"])
