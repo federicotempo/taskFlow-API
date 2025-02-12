@@ -7,6 +7,7 @@ const getTasks = async (req, res) => {
     return res.status(200).json(tasks);
   } catch (error) {
     console.error(error);
+    
     return res.status(500).json({
       message: "There was an error retrieving the tasks",
       error: error.message,
@@ -23,6 +24,7 @@ const createTask = async (req, res) => {
     return res.status(201).json({ message: "Task created" });
   } catch (error) {
     console.error(error);
+
     return res.status(500).json({
       message: "There was an error creating the task",
       error: error.message,
@@ -41,9 +43,11 @@ const updateTask = async (req, res) => {
     return res.status(200).json({ message: "Task updated successfully" });
   } catch (error) {
     console.error(error.message);
+
     if (error.code === "P2025") {
       return res.status(404).json({ message: "Task not found" });
     }
+
     return res.status(500).json({
       message: "There was an error updating the task",
       error: error.message,
