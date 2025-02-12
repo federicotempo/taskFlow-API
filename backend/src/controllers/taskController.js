@@ -38,7 +38,7 @@ const updateTask = async (req, res) => {
       where: { id: Number(id) },
       data: { title, description, dueDate, status, visibility },
     });
-    res.status(200).json({ message: "Task updated successfully" });
+    return res.status(200).json({ message: "Task updated successfully" });
   } catch (error) {
     console.error(error.message);
     return res.status(500).json({
@@ -48,4 +48,26 @@ const updateTask = async (req, res) => {
   }
 };
 
-module.exports = { getTasks, createTask, updateTask };
+const deleteTask = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const task = await prisma.task.delete({
+      where: { id: Number(id) },
+    });
+
+    return res.status(200).json({ message: "Task deleted successfully" });
+  } catch (error) {
+    console.error(error.message);
+
+    if (error.code === "P2025") {
+      return res.status(404).json({ message: "Task not found" });
+    }
+
+    return res.status(500).json({
+      message: "There was an error deleting the task",
+      error: error.message,
+    });
+  }
+};
+
+module.exports = { getTasks, createTask, updateTask, deleteTask };
