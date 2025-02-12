@@ -11,7 +11,7 @@ const taskRouter = Router();
 
 taskRouter.get("/", getTasks);
 taskRouter.post("/", validateTask, createTask);
-taskRouter.put("/:id", updateTask);
+taskRouter.put("/:id", validateTask, updateTask);
 taskRouter.delete("/:id", deleteTask);
 
 module.exports = taskRouter;
