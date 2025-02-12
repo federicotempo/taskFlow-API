@@ -13,9 +13,11 @@ app.use(helmet());
 app.use(limiter);
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  return res.send("Hello world");
-});
+const authRoutes = require("./src/routes/authRoutes");
+const taskRoutes = require("./src/routes/taskRoutes");
+
+app.use("/api/auth", authRoutes);
+app.use("/api/task", taskRoutes);
 
 app.listen(PORT, () => {
   console.log(`TaskFlow is running on http://localhost:${PORT}`);
