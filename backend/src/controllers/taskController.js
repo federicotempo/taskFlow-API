@@ -7,7 +7,29 @@ const getTasks = async (req, res) => {
     return res.status(200).json(tasks);
   } catch (error) {
     console.error(error);
-    
+
+    return res.status(500).json({
+      message: "There was an error retrieving the tasks",
+      error: error.message,
+    });
+  }
+};
+
+const getTaskById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const task = await prisma.task.findUnique({
+      where: { id: Number(id) },
+    });
+
+    if (!task) {
+      return res.status(404).json({ message: "Task not found" });
+    }
+
+    return res.status(200).json(task);
+  } catch (error) {
+    console.error(error);
+
     return res.status(500).json({
       message: "There was an error retrieving the tasks",
       error: error.message,
@@ -77,4 +99,4 @@ const deleteTask = async (req, res) => {
   }
 };
 
-module.exports = { getTasks, createTask, updateTask, deleteTask };
+module.exports = { getTasks, createTask, updateTask, deleteTask, getTaskById };
