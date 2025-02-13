@@ -4,6 +4,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const jsonErrorHandler = require("./src/middlewares/jsonErrorHandler");
+const passport = require("./config/passport")
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,6 +15,7 @@ app.use(helmet());
 app.use(limiter);
 app.use(express.json());
 app.use(jsonErrorHandler);
+app.use(passport.initialize())
 
 const authRoutes = require("./src/routes/authRoutes");
 const taskRoutes = require("./src/routes/taskRoutes");
