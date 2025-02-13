@@ -5,8 +5,8 @@ const validateComment = [
     .trim()
     .isLength({ min: 1 })
     .withMessage("Comment text must be at least 1 character long"),
-  body("userId").isInt().withMessage("User ID must be a valid number"),
-  body("taskId").isInt().withMessage("Task id must be a valid number"),
+  body("userId").toInt(),
+  body("taskId").toInt(),
 
   (req, res, next) => {
     const errors = validationResult(req);

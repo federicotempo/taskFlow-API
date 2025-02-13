@@ -19,9 +19,11 @@ app.use(passport.initialize())
 
 const authRoutes = require("./src/routes/authRoutes");
 const taskRoutes = require("./src/routes/taskRoutes");
+const commentRoutes = require("./src/routes/commentRoutes");
 
 app.use("/api/auth", authRoutes);
-app.use("/api/task", taskRoutes);
+app.use("/api/tasks", taskRoutes);
+app.use("/api/comments", commentRoutes);
 
 app.listen(PORT, () => {
   console.log(`TaskFlow is running on http://localhost:${PORT}`);
