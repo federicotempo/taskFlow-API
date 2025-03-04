@@ -25,9 +25,9 @@ const MainContent: React.FC = () => {
             <p className="text-gray-600 mt-2">{task.description}</p>
             <p
               className={`mt-2 font-semibold ${
-                task.status === "Completed"
+                task.status === "COMPLETED"
                   ? "text-green-600"
-                  : task.status === "In Progress"
+                  : task.status === "IN_PROGRESS"
                   ? "text-yellow-600"
                   : "text-red-600"
               }`}
