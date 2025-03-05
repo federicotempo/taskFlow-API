@@ -5,6 +5,7 @@ interface Task {
   title: string;
   description: string;
   status: string;
+  createdAt: string;
   dueDate: string;
 }
 

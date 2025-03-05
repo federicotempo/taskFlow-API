@@ -1,4 +1,5 @@
 import useTasks from "../hooks/useTasks";
+import { formatDateTime } from "../helpers/formatDateTime";
 
 const MainContent: React.FC = () => {
   const { tasks, loading, error } = useTasks();
@@ -34,7 +35,8 @@ const MainContent: React.FC = () => {
             >
               {task.status}
             </p>
-            <p className="mt-2 text-gray-500 text-sm">{task.dueDate}</p>
+            <p className="mt-2 text-gray-500 text-sm">Created At: {formatDateTime(task.createdAt)}</p>
+            <p className="mt-2 text-gray-500 text-sm">Due Date: {formatDateTime(task.dueDate)}</p>
           </div>
         ))}
       </div>

@@ -130,3 +130,6 @@ dist
 .pnp.*
 
 backend/prisma/migrations
+
+postgreSQL.session.sql
+.vscode
